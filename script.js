@@ -12,19 +12,18 @@ const PUZZLES = [
 const SVG_NS = "http://www.w3.org/2000/svg";
 const draw_piece = (svg, t, x, y, rot) => {
     for (let j = 0; j < t.length; ++j) {
-        const r = (2 + j + rot) % 4;
-        const q = t[j];
+        const r = 90*((2 + j + rot) % 4);
+        const color = COLORS[Math.abs(t[j])];
+        const opacity = (Math.sign(t[j]) < 0) ? 0.3 : 1;
         const el = document.createElementNS(SVG_NS, "path");
         for (const [k, v] of [
             ["d", "M0,0L1,1L-1,1Z"],
             ["stroke", "black"],
             ["stroke-width", 0.05],
             ["stroke-linejoin", "round"],
-            ["fill", COLORS[Math.abs(q)]],
-            ["fill-opacity", (Math.sign(q) < 0) ? 0.3 : 1],
-            ["transform", "scale(20)" + 
-                `translate(${x}, ${y}) ` +
-                `rotate(${90*r},0,0)`]
+            ["fill", color,
+            ["fill-opacity", opacity],
+            ["transform", `scale(20) translate(${x},${y}) rotate(${r},0,0)`]
         ]) {
             el.setAttribute(k, v);
         }

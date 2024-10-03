@@ -3,7 +3,7 @@ const COLORS = [undefined, "red", "green", "blue", "yellow"];
 const PUZZLES = [
     [[-1, 3,-2, 1], [ 1, 3, 2,-4], [-1, 2, 4, 3],
      [-1, 3,-4, 2], [-1,-3,-2, 4], [-1,-4, 3,-2],
-     [-3, 4, 3, 4], [ 1, 2,-4,-3], [-1, 2,-2,-4]], 
+     [-3, 4, 3, 4], [ 1, 2,-4,-3], [-1, 2,-2,-4]],
     [[ 1, 2,-3,-4], [ 4, 3,-1,-2], [-2, 1, 4,-3],
      [ 2, 1,-4,-3], [ 1,-2,-3, 4], [-4,-1, 2, 3],
      [ 4,-2,-1, 3], [ 3,-1,-4, 2], [ 4, 3,-2,-1]],
@@ -21,7 +21,7 @@ const draw_piece = (svg, t, x, y, rot) => {
             ["stroke", "black"],
             ["stroke-width", 0.05],
             ["stroke-linejoin", "round"],
-            ["fill", color,
+            ["fill", color],
             ["fill-opacity", opacity],
             ["transform", `scale(20) translate(${x},${y}) rotate(${r},0,0)`]
         ]) {
@@ -70,7 +70,7 @@ const match = (puzzle, config = [], seen = new Set(), found = []) => {
     return found;
 };
 
-window.onload = () => { 
+window.onload = () => {
     const svg = document.getElementById("svg");
     for (let p = 0; p < PUZZLES.length; ++p) {
         const puzzle = PUZZLES[p];
